@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open When... ❤️</title>
+    <style>
+        body {
+            background-color: #ffe4e1;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: radial-gradient(#ffb6c1 20%, transparent 20%), radial-gradient(#ffb6c1 20%, transparent 20%);
+            background-size: 30px 30px;
+            background-position: 0 0, 15px 15px;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0px 10px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 450px;
+            border: 3px dashed #ff69b4;
+        }
+        h1 { color: #ff69b4; font-size: 24px; }
+        p { color: #555; font-size: 18px; }
+        button {
+            background-color: #ff69b4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 10px;
+            transition: 0.3s;
+        }
+        button:hover { background-color: #ff1493; transform: scale(1.05); }
+        .hidden { display: none; }
+        .envelope-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .envelope {
+            background: #ffb6c1;
+            padding: 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            color: white;
+            font-weight: bold;
+            border: 2px solid #ff69b4;
+        }
+        .envelope:hover { background: #ff69b4; }
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border: 3px solid #ff69b4;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            z-index: 10;
+            width: 80%;
+            max-width: 350px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Screen 1 -->
+    <div id="screen1" class="container">
+        <h1>I made something for you... 🌸</h1>
+        <button onclick="nextScreen(1, 2)">What?</button>
+    </div>
+
+    <!-- Screen 2 -->
+    <div id="screen2" class="container hidden">
+        <h1>Will you see it? 🥺</h1>
+        <button onclick="nextScreen(2, 3)">Yes</button>
+        <button onclick="alert('Arre! Yes par click karo na 😜')">No</button>
+    </div>
+
+    <!-- Screen 3 -->
+    <div id="screen3" class="container hidden">
+        <h1>Are you ready for the surprise? 🎉</h1>
+        <button onclick="nextScreen(3, 4)">Yes!!</button>
+    </div>
+
+    <!-- Screen 4 -->
+    <div id="screen4" class="container hidden">
+        <h1>Open When... ❤️</h1>
+        <p>Jab bhi jaisa mood ho, sahi lifafa khol lena!</p>
+        
+        <div class="envelope-grid">
+            <div class="envelope" onclick="openLetter('You miss me', 'Hey! Agar tum mujhe miss kar rahe ho, toh tension mat lo, main hamesha tumhare sath hoon. Ek pyaari si smile karo aur mujhe call karo! ❤️')">📩 You miss me</div>
+            <div class="envelope" onclick="openLetter('You are sad', 'Sad kyu ho? Jo bhi hua use bhool jao. Tum bohot strong ho aur meri smile tumse hi hai. Chalo abhi thoda paani piyo aur achha gaana suno! 🥰')">📩 You are sad</div>
+            <div class="envelope" onclick="openLetter('You are happy', 'Yayy! Tum khush ho toh main bhi khush hoon. Is khushi ko aise hi barkarar rakhna aur apni ye cute smile mujhe hamesha dikhate rehna! 😁⭐')">📩 You are happy</div>
+            <div class="envelope" onclick="openLetter('We fight', 'I am sorry! Agar hamari ladai hui hai, toh gussa thanda karo. We are a team, aur main tumse bohot pyaar karta hoon. Chalo gussa thuk do! 🥺👉👈')">📩 We fight</div>
+        </div>
+    </div>
+
+    <!-- Secret Popup -->
+    <div id="letterPopup" class="popup hidden">
+        <h2 id="popupTitle" style="color: #ff69b4;"></h2>
+        <p id="popupMessage"></p>
+        <button onclick="closeLetter()">Close ❌</button>
+    </div>
+
+    <script>
+        function nextScreen(current, next) {
+            document.getElementById('screen' + current).classList.add('hidden');
+            document.getElementById('screen' + next).classList.remove('hidden');
+        }
+
+        function openLetter(title, message) {
+            document.getElementById('popupTitle').innerText = "Open When " + title;
+            document.getElementById('popupMessage').innerText = message;
+            document.getElementById('letterPopup').classList.remove('hidden');
+        }
+
+        function closeLetter() {
+            document.getElementById('letterPopup').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
+
